@@ -197,11 +197,19 @@ methodmap DasNaggenvatcher < CClotBody
 		WaveStart_SubWaveStart(GetGameTime() + 1000.0);
 		npc.m_iMaxHP = 10000000;
 		
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+		RaidModeTime = GetGameTime(npc.index) + 60.0;
+=======
+		RaidModeTime = GetGameTime(npc.index) + 400.0;
+>>>>>>> Stashed changes
+=======
 		i_SaidLineAlready[npc.index]=0;
 		npc.m_bFUCKYOU=false;
 		npc.m_flNPCTalkDelay=0.0;
 		
 		RaidModeTime = GetGameTime(npc.index) + 60.0;
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		RaidBossActive = EntIndexToEntRef(npc.index);
 		RaidAllowsBuildings = true;
 		npc.Anger = false;
@@ -850,6 +858,31 @@ static Action DasNaggenvatcher_OnTakeDamage(int victim, int &attacker, int &infl
 			return Plugin_Handled;
 		}
 	}
+<<<<<<< HEAD
+	if(npc.Anger && RoundToCeil(damage) >= GetEntProp(npc.index, Prop_Data, "m_iHealth"))
+	{
+		if(!g_dasnaggenvatcher_died)
+		{
+			b_NpcIsInvulnerable[npc.index] = true;
+			b_ThisEntityIgnoredByOtherNpcsAggro[npc.index] = true;
+			g_dasnaggenvatcher_died=true;
+			npc.m_bThisNpcIsABoss = false;
+			RemoveNpcFromEnemyList(npc.index);
+			if(EntRefToEntIndex(RaidBossActive)==npc.index)
+				RaidBossActive = INVALID_ENT_REFERENCE;
+			g_dasnaggenvatcher_die = GetGameTime(npc.index) + 40.0;
+<<<<<<< Updated upstream
+			RaidModeTime += 120.0;
+=======
+			RaidModeTime += 60.0;
+>>>>>>> Stashed changes
+			
+			SetEntProp(npc.index, Prop_Data, "m_iHealth", 1);
+			damage = 0.0;
+		}
+	}
+=======
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 	return Plugin_Changed;
 }
 public void DasNaggenvatcher_OnTakeDamagePost(int victim, int attacker, int inflictor, float damage, int damagetype) 
@@ -863,8 +896,17 @@ public void DasNaggenvatcher_OnTakeDamagePost(int victim, int attacker, int infl
 		npc.g_TimesSummoned = 1;
 		npc.PlaySummonSound();
 		npc.m_flDoingSpecial = GetGameTime(npc.index) + 10.0;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+		RaidModeTime += 80.0;
+=======
+		RaidModeTime += 15.0;
+>>>>>>> Stashed changes
+			
+=======
 		RaidModeTime += 80.0;
 		
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_zombie_soldier_pickaxe",40000, RoundToCeil(6.0 * MultiGlobalEnemy));
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_zombie_soldier",30000, RoundToCeil(6.0 * MultiGlobalEnemy));
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_zombie_demoknight",25000, RoundToCeil(6.0 * MultiGlobalEnemy));
@@ -882,8 +924,17 @@ public void DasNaggenvatcher_OnTakeDamagePost(int victim, int attacker, int infl
 		npc.g_TimesSummoned = 2;
 		npc.PlaySummonSound();
 		npc.m_flDoingSpecial = GetGameTime(npc.index) + 10.0;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+		RaidModeTime += 80.0;
+=======
+		RaidModeTime += 15.0;
+>>>>>>> Stashed changes
+				
+=======
 		RaidModeTime += 80.0;
 		
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_eradicator",70000, RoundToCeil(6.0 * MultiGlobalEnemy));
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_vile_poisonheadcrab_zombie",80000, RoundToCeil(6.0 * MultiGlobalEnemy));
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_fastheadcrab_zombie",30000, RoundToCeil(6.0 * MultiGlobalEnemy));
@@ -898,8 +949,17 @@ public void DasNaggenvatcher_OnTakeDamagePost(int victim, int attacker, int infl
 		npc.g_TimesSummoned = 3;
 		npc.PlaySummonSound();
 		npc.m_flDoingSpecial = GetGameTime(npc.index) + 10.0;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+		RaidModeTime += 80.0;
+=======
+		RaidModeTime += 15.0;
+>>>>>>> Stashed changes
+			
+=======
 		RaidModeTime += 80.0;
 		
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_ihbc",45000, RoundToCeil(5.0 * MultiGlobalEnemy));
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_firefighter",50000, RoundToCeil(5.0 * MultiGlobalEnemy));
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_zombie_breadmonster",50000, RoundToCeil(5.0 * MultiGlobalEnemy));
@@ -917,7 +977,15 @@ public void DasNaggenvatcher_OnTakeDamagePost(int victim, int attacker, int infl
 		DasNaggenvatcherSayWords(npc.index);
 		npc.g_TimesSummoned = 4;
 		npc.PlaySummonSound();
+<<<<<<< HEAD
+<<<<<<< Updated upstream
 		RaidModeTime += 120.0;
+=======
+		RaidModeTime += 15.0;
+>>>>>>> Stashed changes
+=======
+		RaidModeTime += 120.0;
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		
 		npc.m_flDoingSpecial = GetGameTime(npc.index) + 10.0;
 		DasNaggenvatcherSpawnEnemy(npc.index,"npc_zs_sniper",20000, RoundToCeil(2.0 * MultiGlobalEnemy));
@@ -1007,10 +1075,33 @@ static void DasNaggenvatcherSayWords(int entity, bool ImAngry=false)
 	{
 		switch(GetRandomInt(0,3))
 		{
+<<<<<<< HEAD
+			case 0:
+			{
+<<<<<<< Updated upstream
+				CPrintToChatAll("{crimson}다스 고르통보호기 메딕{default}: 우리가 이룩한 모든 것을 적이 파괴하려 한다.");
+=======
+				CPrintToChatAll("{crimson}다스 고르통보호기 메딕{default}: 함께라면 어떤 적이든 처단할 수 있다!");
+>>>>>>> Stashed changes
+			}
+			case 1:
+			{
+				CPrintToChatAll("{crimson}다스 고르통보호기 메딕{default}: 좋아, 친구들. 우리가 가진 모든걸 쏟아부어라! 우리는 여기서 더이상 낭비할 시간이 없다!");
+			}
+			case 2:
+			{
+				CPrintToChatAll("{crimson}다스 고르통보호기 메딕{default}: 우리는 하나가 되어 결코 패배하지 않을 것이다!");
+			}
+			case 3:
+			{
+				CPrintToChatAll("{crimson}다스 고르통보호기 메딕{default}: 너희도 우리와 하나가 될것이다.");
+			}
+=======
 			case 0: PrintNPCMessageWithPrefixes(entity, "crimson", "CaptainQuetz_LastMann_2", true);
 			case 1: PrintNPCMessageWithPrefixes(entity, "crimson", "CaptainQuetz_BattleCry_1", true);
 			case 2: PrintNPCMessageWithPrefixes(entity, "crimson", "CaptainQuetz_BattleCry_2", true);
 			case 3: PrintNPCMessageWithPrefixes(entity, "crimson", "CaptainQuetz_BattleCry_3", true);
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		}
 	}
 	else

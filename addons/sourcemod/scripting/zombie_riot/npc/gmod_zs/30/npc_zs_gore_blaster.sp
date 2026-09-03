@@ -266,12 +266,18 @@ static void GoreBlaster_NPCDeath(int entity)
 		npc.PlayDeathSound();	
 
 	float vecMe[3]; WorldSpaceCenter(npc.index, vecMe);
+<<<<<<< HEAD
+	//TE_Particle("asplode_hoodoo", vecMe, NULL_VECTOR, NULL_VECTOR, _, _, _, _, _, _, _, _, _, _, 0.0);
+	//int team = GetTeam(npc.index);
+
+=======
 	DataPack pack_boom = new DataPack();
 	pack_boom.WriteFloat(vecMe[0]);
 	pack_boom.WriteFloat(vecMe[1]);
 	pack_boom.WriteFloat(vecMe[2]);
 	pack_boom.WriteCell(1);
 	RequestFrame(MakeExplosionFrameLater, pack_boom);
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 	Explode_Logic_Custom(40.0, npc.index, npc.index, -1, vecMe, 200.0, 1.0, _, true, 15, _, _, GoreBlaster_ExplodePost);
 }
 

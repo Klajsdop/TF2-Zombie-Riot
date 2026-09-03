@@ -239,6 +239,16 @@ static void InfectedEngineer_ClotThink(int iNPC)
 						{
 							if(!ShouldNpcDealBonusDamage(target))
 							{
+<<<<<<< HEAD
+								if(!ShouldNpcDealBonusDamage(target))
+									SDKHooks_TakeDamage(target, npc.index, npc.index, 500.0, DMG_CLUB, -1, _, vecHit);
+								else
+									SDKHooks_TakeDamage(target, npc.index, npc.index, 10000.0, DMG_CLUB, -1, _, vecHit);
+								// Hit sound
+								npc.PlayMeleeHitSound();
+								
+							} 
+=======
 								SDKHooks_TakeDamage(target, npc.index, npc.index, 500.0, DMG_CLUB, -1, _, vecHit);
 								ApplyStatusEffect(npc.index, target, "Cudgelled", 8.0);
 							}
@@ -249,6 +259,7 @@ static void InfectedEngineer_ClotThink(int iNPC)
 							// Hit sound
 							npc.PlayMeleeHitSound();
 							
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 						}
 					}
 					delete swingTrace;

@@ -322,8 +322,46 @@ methodmap ZsUnspeakable < CClotBody
 					ShowGameText(client_check, "item_armor", 1, "%t", "Run while you can.");
 				}
 			}
+<<<<<<< HEAD
+			RaidModeTime = GetGameTime(npc.index) + 200.0;
+			RaidBossActive = EntIndexToEntRef(npc.index);
+			RaidAllowsBuildings = true;
+			float value;
+			char buffers[3][64];
+			ExplodeString(data, ";", buffers, sizeof(buffers), sizeof(buffers[]));
+			//the very first and 2nd char are SC for scaling
+			if(buffers[0][0] == 's' && buffers[0][1] == 'c')
+			{
+				//remove SC
+				ReplaceString(buffers[0], 64, "sc", "");
+				value = StringToFloat(buffers[0]);
+				RaidModeScaling = value;
+			}
+			else
+			{	
+				RaidModeScaling = float(Waves_GetRoundScale()+1);
+				value = float(Waves_GetRoundScale()+1);
+			}
+
+			if(RaidModeScaling < 35)
+			{
+				RaidModeScaling *= 0.25; //abit low, inreacing
+			}
+			else
+			{
+				RaidModeScaling *= 0.5;
+			}
+			float amount_of_people = ZRStocks_PlayerScalingDynamic();
+			//npc.m_iPlayerScaledStart = CountPlayersOnRed();
+			if(amount_of_people > 12.0)
+			{
+				amount_of_people = 12.0;
+			}
+			amount_of_people *= 0.12;
+=======
 			EmitSoundToAll("npc/zombie_poison/pz_alert1.wav", _, _, _, _, 1.0, 80);	
 			EmitSoundToAll("npc/zombie_poison/pz_alert1.wav", _, _, _, _, 1.0, 80);	
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 			
 			switch(GetRandomInt(0,2))
 			{
@@ -629,8 +667,23 @@ static Action ZsUnspeakable_OnTakeDamage(int victim, int &attacker, int &inflict
 		SensalGiveShield(npc.index, CountPlayersOnRed(1) * 24);
 		if(!npc.m_bAlliesSummoned)
 		{
+<<<<<<< HEAD
+			SensalGiveShield(npc.index, CountPlayersOnRed(1) * 24);
+			if(!npc.m_bAlliesSummoned)
+			{
+				npc.m_bAlliesSummoned = true;
+				Spawn_Zombie(npc);
+			}
+<<<<<<< Updated upstream
+			CPrintToChatAll("{crimson}불결한 존재{default}: 들린다... 너희의 육신이 부패하고, 심장이 멎는 그 소리가!");
+=======
+			CPrintToChatAll("{crimson}불결한 존재{default}: 이 불경한 놈들이 감히!");
+>>>>>>> Stashed changes
+			RaidModeScaling *= 1.1;
+=======
 			npc.m_bAlliesSummoned = true;
 			Spawn_Zombie(npc);
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 		}
 		
 		RaidModeTime += 30.0;
@@ -656,8 +709,19 @@ static Action ZsUnspeakable_OnTakeDamage(int victim, int &attacker, int &inflict
 			ProjectileLoc[2] += 5.0;
 			switch(GetRandomInt(1,2))
 			{
+<<<<<<< HEAD
+				case 1:
+				{
+					CPrintToChatAll("{crimson}불결한 존재{default}: 자, 발악하라");
+				}
+				case 2:
+				{
+					CPrintToChatAll("{crimson}불결한 존재{default}: 귀찮게하는군.");
+				}
+=======
 				case 1: PrintNPCMessageWithPrefixes(npc.index, "crimson", "ZsPoYo_Phase3_1", true);
 				case 2: PrintNPCMessageWithPrefixes(npc.index, "crimson", "ZsPoYo_Phase3_2", true);
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 			}
 		}
 	}
@@ -1056,10 +1120,19 @@ static void ZsUnspeakableSelfDefense(ZsUnspeakable npc, float gameTime, int targ
 						WorldSpaceCenter(target, vecHit);
 									
 						float damageDealt = 10.0 * RaidModeScaling;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 						if(i_IsABuilding[target])
 						{
 							damageDealt = 5000.0;
 						}
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> eee2437df83122a115f1d177921d71051d7614e2
 
 						SDKHooks_TakeDamage(target, npc.index, npc.index, damageDealt, DMG_CLUB, -1, _, vecHit);	
 						Elemental_AddPheromoneDamage(target, npc.index, RoundToNearest(damageDealt * 0.15), true, true);							
