@@ -83,7 +83,11 @@ void WeaponUranium_OnTakeDamage(int attacker,int victim, float &damage, float da
 {
 	if(Uranium_TimeTillBigHit[attacker][victim] < GetGameTime())
 	{
-		damage *= 2.2;
+		if(Arena_Mode())
+			damage *= 1.7;
+		else
+			damage *= 2.2;
+			
 		if(!CheckInHud())
 		{
 			Uranium_TimeTillBigHit[attacker][victim] = GetGameTime() + 40.0;
@@ -200,7 +204,7 @@ public void Weapon_SniperRifle_DMR_R(int client, int weapon, bool crit, int slot
 	float vecSwingForward[3];
 	StartLagCompensation_Base_Boss(client);
 	DoSwingTrace_Custom(swingTrace, client, vecSwingForward, 9900.0, false, 9900.0, true); //infinite range, and does not ignore walls!
-	FinishLagCompensation_Base_boss();
+	FinishLagCompensation_Base_boss(.client = client);
 	
 	int target = TR_GetEntityIndex(swingTrace);	
 	delete swingTrace;
@@ -378,7 +382,7 @@ public void Weapon_SniperRifle_DMR_M1(int client, int weapon, bool crit, int slo
 		}
 	}
 	delete trace;
-	FinishLagCompensation_Base_boss();
+	FinishLagCompensation_Base_boss(.client = client);
 	
 	if(SniperRifle_SpreadTime[client]==0.0)
 		SniperRifle_SpreadTime[client] = GameTime;
