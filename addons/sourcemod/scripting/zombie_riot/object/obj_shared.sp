@@ -29,7 +29,6 @@ static Function FuncCanBuild[MAXENTITIES];
 //static Function FuncShowInteractHud[MAXENTITIES];
 
 static int Building_Max_Health[MAXENTITIES]={0, ...};
-static bool CanUseBuilding[MAXENTITIES][MAXPLAYERS];
 int i_MachineJustClickedOn[MAXPLAYERS];
 static float RotateByDefault[MAXENTITIES]={0.0, ...};
 int Building_BuildingBeingCarried[MAXENTITIES];
@@ -1250,6 +1249,7 @@ void DestroyBuildingDo(int entity, bool DontCheckAgain = false)
 		Call_Finish();
 	}
 	//no more hp.
+	VestanAssaultVehicle_ResetObject(entity);
 	SetEntProp(objstats.index, Prop_Data, "m_iHealth", 0);
 	objstats.PlayDeathSound();
 	float VecOrigin[3];
